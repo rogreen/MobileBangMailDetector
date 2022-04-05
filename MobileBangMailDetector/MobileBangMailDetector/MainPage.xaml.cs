@@ -24,9 +24,11 @@ namespace MobileBangMailDetector
 
             try
             {
+                //string filter = "importance eq 'high'";
                 //string filter = "importance eq 'high' " +
                 //                "and sender/emailaddress/address eq 'rgreen2005@msn.com'";
-                string filter = "importance eq 'high'";
+                string filter = "importance eq 'high' & isread eq 'false' " +
+                                "& from/emailaddress/address eq 'rgreen2005@msn.com'";
                 IMailFolderMessagesCollectionPage folderMessages =
                     await App.GraphClient.Me.MailFolders.Inbox.Messages.Request()
                                                         .Filter(filter).GetAsync();
